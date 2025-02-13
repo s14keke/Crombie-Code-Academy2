@@ -123,3 +123,83 @@ const product2: Product = {
 
 console.log(calculateFinalPrice(product1));
 console.log(calculateFinalPrice(product2));
+
+// Exercise 8
+
+enum roles {
+    Admin = 'Admin',
+    Editor = 'Editor',
+    Reader = 'Reader'
+}
+
+type interfaceUser = {
+    name: string;
+    age: number;
+    role: roles;
+}
+
+function checkRole(user: interfaceUser): string {
+    if (user.role === 'Admin') {
+        return `${user.name}, you are an admin`;
+    } else if (user.role === 'Editor') {
+        return `${user.name}, you are an editor`;
+    } else {
+        return `${user.name}, you are a reader`;
+    }
+}
+
+const user1: interfaceUser = {
+    name: 'José',
+    age: 20,
+    role: roles.Admin
+}
+
+const user2: interfaceUser = {
+    name: 'Juan',
+    age: 30,
+    role: roles.Editor
+}
+
+const user3: interfaceUser = {
+    name: 'Ana',
+    age: 25,
+    role: roles.Reader
+}
+
+console.log(checkRole(user1));
+console.log(checkRole(user2));
+console.log(checkRole(user3));
+
+// Exercise 9
+
+type Coordinates = [number, number];
+
+function showLocation(coords: Coordinates): string {
+    return `Latitude: ${coords[0]}, Longitude: ${coords[1]}`;
+}
+
+const myCoords: Coordinates = [40.7128, -74.0060];
+
+console.log(showLocation(myCoords));
+
+// Exercise 10
+
+class Car {
+    public brand: string;
+    public model: string;
+    private year: number;
+
+    constructor(brand: string, model: string, year: number) {
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+    }
+
+    public getInfo(): string {
+        return `Brand: ${this.brand}, Model: ${this.model}, Year: ${this.year}`;
+    }
+}
+
+const myCar = new Car('Fiat', 'Uno Fire', 2008);
+
+console.log(myCar.getInfo());
