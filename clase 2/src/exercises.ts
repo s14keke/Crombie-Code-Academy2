@@ -153,13 +153,13 @@ enum roles {
     Reader = 'Reader'
 }
 
-type interfaceUser = {
+interface User {
     name: string;
     age: number;
     role: roles;
 }
 
-function checkRole(user: interfaceUser): string {
+function checkRole(user: User): string {
     if (user.role === 'Admin') {
         return `${user.name}, you are an admin`;
     } else if (user.role === 'Editor') {
@@ -169,19 +169,19 @@ function checkRole(user: interfaceUser): string {
     }
 }
 
-const user1: interfaceUser = {
+const user1: User = {
     name: 'José',
     age: 20,
     role: roles.Admin
 }
 
-const user2: interfaceUser = {
+const user2: User = {
     name: 'Juan',
     age: 30,
     role: roles.Editor
 }
 
-const user3: interfaceUser = {
+const user3: User = {
     name: 'Ana',
     age: 25,
     role: roles.Reader
