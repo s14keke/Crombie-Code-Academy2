@@ -1,3 +1,24 @@
+// Exercise 1
+
+interface Animal {
+    name: string;
+    age: number;
+}
+
+interface Dog extends Animal {
+    race: string;
+    domesticated: boolean;
+}
+
+const myDog: Dog = {
+    name: 'Roko',
+    age: 11,
+    race: 'Dachshund',
+    domesticated: true
+}
+
+console.log(myDog);
+
 // Exercise 2
 
 type CivilStatus = 'single' | 'married' | 'divorced' | 'widowed';
@@ -203,3 +224,6 @@ class Car {
 const myCar = new Car('Fiat', 'Uno Fire', 2008);
 
 console.log(myCar.getInfo());
+
+// Crea una instancia de Coche e intenta acceder a año desde fuera de la clase. ¿Qué sucede?
+// console.log(myCar.year); // Esto va a tirar un error porque 'year' es privado
