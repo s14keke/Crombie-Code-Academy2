@@ -1,86 +1,86 @@
-// Ejercicio 2
+// Exercise 2
 
 type CivilStatus = 'single' | 'married' | 'divorced' | 'widowed';
 
 interface Person { 
     name: string;
     age: number;
-    civilStatus: CivilStatus;
+    maritalStatus: CivilStatus;
 }
 
-type Persona = {
-name: string;
-age: number;
-civilStatus: CivilStatus;
+type Individual = {
+    name: string;
+    age: number;
+    maritalStatus: CivilStatus;
 }
 
 const person: Person = {   
-    name: 'gime',
-    age: 76,
-    civilStatus: 'married'
+    name: 'José',
+    age: 85,
+    maritalStatus: 'married'
 }
 
 console.log(person);
 
-// Ejercicio 3
+// Exercise 3
 
-type Ubicacion = {
-    latitud: number;
-    longitud: number;
+type Locations = {
+    latitude: number;
+    longitude: number;
 }
 
-type Direccion = {
-    calle: string;
-    ciudad: string;
+type Address = {
+    street: string;
+    city: string;
 }
 
-type UbicacionCompleta = Ubicacion & Direccion;
+type CompleteLocation = Locations & Address;
 
-const miUbicacion: UbicacionCompleta = {
-    latitud: 40.7128,
-    longitud: -74.0060,
-    calle: 'Hipolito Yrigoyen',
-    ciudad: 'Santo Tomé'
+const myLocation: CompleteLocation = {
+    latitude: 40.7128,
+    longitude: -74.0060,
+    street: 'Broadway',
+    city: 'New York'
 }
 
-console.log(miUbicacion);
+console.log(myLocation);
 
-// Ejercicio 4
+// Exercise 4
 
 type Id = number | string;
 
-function getId<T extends Id>(id: T):string {
+function getId<T extends Id>(id: T): string {
     if (typeof id === 'number') {
-        return `El id es numérico: ${id}`;
+        return `The id is numeric: ${id}`;
     } else {
-        return `El id es un string: ${id}`;
+        return `The id is a string: ${id}`;
     }
 }
 
 console.log(getId(123)); 
-console.log (getId('hola k ase'));
+console.log(getId('hello there'));
 
-// Ejercicio 5
+// Exercise 5
 
-type OperacionBinaria = (a: number, b: number) => number;
+type BinaryOperation = (a: number, b: number) => number;
 
-const suma: OperacionBinaria = (a, b) => a + b;
-const multiplicacion: OperacionBinaria = (a, b) => a * b;
+const sum: BinaryOperation = (a, b) => a + b;
+const multiplication: BinaryOperation = (a, b) => a * b;
 
-function operar(op: OperacionBinaria, a: number, b: number): number {
+function operate(op: BinaryOperation, a: number, b: number): number {
     return op(a, b);
 }
 
-console.log(suma(2, 3));
-console.log(multiplicacion(2, 3));
+console.log(sum(2, 3));
+console.log(multiplication(2, 3));
 
-// Ejercicio 6 
+// Exercise 6 
 
-interface Traducciones {
+interface Translations {
     [language: string]: string;
 }
 
-const traduccionesSaludo: Traducciones = { 
+const greetingTranslations: Translations = { 
     es: 'Hola',
     en: 'Hello',
     it: 'Ciao',
@@ -88,12 +88,38 @@ const traduccionesSaludo: Traducciones = {
     jp: 'こんにちは'
 }
 
-function saludar(lang: string): string {
-    return traduccionesSaludo[lang];
+function greet(lang: string): string {
+    return greetingTranslations[lang];
 }
 
-console.log(saludar('es'));
-console.log(saludar('en'));
-console.log(saludar('it'));
-console.log(saludar('de'));
-console.log(saludar('jp'));
+console.log(greet('es'));
+console.log(greet('en'));
+console.log(greet('it'));
+console.log(greet('de'));
+console.log(greet('jp'));
+
+// Exercise 7
+
+interface Product {
+    name: string;
+    price: number;
+    discount?: number;
+}
+
+function calculateFinalPrice(product: Product): number {
+    return product.price - (product.price * (product.discount || 0) / 100);
+}
+
+const product1: Product = {
+    name: 't-shirt',
+    price: 50,
+    discount: 10
+}
+
+const product2: Product = {
+    name: 'shorts',
+    price: 30
+}
+
+console.log(calculateFinalPrice(product1));
+console.log(calculateFinalPrice(product2));
