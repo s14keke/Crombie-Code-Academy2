@@ -227,3 +227,99 @@ console.log(myCar.getInfo());
 
 // Crea una instancia de Coche e intenta acceder a año desde fuera de la clase. ¿Qué sucede?
 // console.log(myCar.year); // Esto va a tirar un error porque 'year' es privado
+
+// Exercise 11
+
+interface persona {
+    name: string;
+    age: number;
+}
+
+interface proffesor extends persona {
+    subject: string[];
+    yearsOfExperience: number;
+}
+
+const professors: proffesor[] = [];
+
+// Implementar una función que cree un profesor y lo pushee a un array.
+function createProfessor(name: string, age: number, subject: string[], yearsOfExperience: number): void {
+    const newProfessor: proffesor = { name, age, subject, yearsOfExperience };
+    professors.push(newProfessor);
+}
+
+// Implementar una función que, dado el nombre de un profesor, actualice sus años de experiencia.
+function updateExperience(name: string, newYearsOfExperience: number): void {
+    const professor = professors.find(prof => prof.name === name);
+    if (professor) {
+        professor.yearsOfExperience = newYearsOfExperience;
+        console.log(`Professor ${name} experience updated to ${newYearsOfExperience} years.`);
+    } else {
+        console.log(`Professor ${name} not found.`);
+    }
+}
+
+// Implementar una función que agregue materias al profesor.
+function addSubject(name: string, newSubject: string[]): void {
+    const professor = professors.find(prof => prof.name === name);
+    if (professor) {
+        professor.subject.push(...newSubject);
+        console.log(`Subjects added to professor ${name}.`);
+    } else {
+        console.log(`Professor ${name} not found.`);
+    }
+}
+
+createProfessor('Marcelo', 45, ['Math', 'Physics'], 20);
+createProfessor('Jorge', 50, ['Chemistry'], 25);
+
+console.log(professors);
+
+updateExperience('Marcelo', 22);
+addSubject('Jorge', ['Biology', 'Astronomy']);
+
+console.log(professors);
+
+// Exercise 12
+ 
+interface Student extends persona {
+    Dni: number;
+    subjects: string[];
+    absences: number;
+    professor: proffesor;
+}
+
+const students: Student[] = [];
+
+// Implementar una función que cree un estudiante y le agregue un profesor
+function createStudent(name: string, age: number, Dni: number, subjects: string[], absences: number, professorName: string): void {
+    const professor = professors.find(prof => prof.name === professorName);
+    if (professor) {
+        const newStudent: Student = { name, age, Dni, subjects, absences, professor };
+        students.push(newStudent);
+    } else {
+        console.log(`Professor ${professorName} not found.`);
+    }
+}
+
+// Implementar una función que, dado el DNI de un alumno, devuelva sus faltas (Si tiene más de 20, devolver un texto mostrando que quedó libre).
+function getAbsences(Dni: number): string {
+    const student = students.find(stu => stu.Dni === Dni);
+    if (student) {
+        if (student.absences > 20) {
+            return `Student ${student.name} has ${student.absences} absences and is not allowed to continue.`;
+        } else {
+            return `Student ${student.name} has ${student.absences} absences.`;
+        }
+    } else {
+        return `Student with DNI ${Dni} not found.`;
+    }
+}
+
+createStudent('Alicia', 20, 44345678, ['Math', 'Physics'], 15, 'Marcelo');
+createStudent('Anacleto', 22, 43654321, ['Chemistry'], 25, 'Jorge');
+
+console.log(students);
+
+console.log(getAbsences(44345678));
+console.log(getAbsences(43654321));
