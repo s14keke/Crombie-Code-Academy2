@@ -4,8 +4,8 @@ import Link from 'next/link';
 
 const NavBar = () => {
   return (
-    <nav className="bg-white-800 p-4">
-      <ul className="flex space-x-20">
+    <nav className="bg-white-800 p-4 flex items-center justify-center w-full">
+      <ul className="flex space-x-20 w-2/3">
         <li>
             <Link href="/" className="text-white hover:text-gray-400">Home</Link>
         </li>
@@ -15,10 +15,11 @@ const NavBar = () => {
         <li>
           <Link href="/products" className="text-white hover:text-gray-400">Products</Link>
         </li>
-        <li className="ml-auto">
-          <Link href="/profile" className="text-white hover:text-gray-400">Profile</Link>
-        </li>
+
       </ul>
+      <div className=''>
+        <Link href="/profile" className="text-white hover:text-gray-400">Profile</Link>
+      </div>
     </nav>
   );
 };
