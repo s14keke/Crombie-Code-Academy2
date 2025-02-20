@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-
 import { ReactNode } from "react";
 
 interface ButtonProps {
@@ -11,10 +10,8 @@ interface ButtonProps {
 
 const Button = ({ children, href }: ButtonProps) => {
   return (
-    <Link href={href}>
-      <a className="bg-blue-500 text-white p-2 rounded hover:bg-red-500">
-        {children}
-      </a>
+    <Link href={href} className="bg-gray-500 text-white p-2 rounded hover:bg-black">
+      {children}
     </Link>
   );
 };
